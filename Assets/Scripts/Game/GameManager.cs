@@ -186,15 +186,10 @@ public class GameManager : MonoBehaviour
         CheckEnd();
         if (endGame) return;
 
-        // Vérifier si on donne le tour à un dé qui a été tué
-        if (getDicePlaying() == null) {
-            // remove the element from the list
-            dices.RemoveAt(playerTurn);
-            if (playerTurn >= dices.Count)
-            {
-                playerTurn = 0;
-            }
-        }
+        // Vérifier si il y a un dé mort, si il un élément de la liste est null, le dé est mort
+        dices.RemoveAll(item => item == null);
+        // Si un des dés : isDead = true, on le supprime de la liste
+        dices.RemoveAll(item => item.isDead);
     
         
 
@@ -202,8 +197,8 @@ public class GameManager : MonoBehaviour
         {
             case "":
                 getDicePlaying().eventIsTurn();
-                highlightTiles(getActions(getDicePlaying()));
-                break;
+                if (!getDicePlaying().isAI) highlightTiles(getActions(getDicePlaying()));
+                return;
 
             case "wait":
                 // Si c'est un dé IA, on applique la méthode iaTurn (calcul de l'action à faire) 
@@ -234,15 +229,15 @@ public class GameManager : MonoBehaviour
                     }    
                 }
 
-            break;
+                return;
 
             case "moving":
                 removeHighlightTiles();
-            break;
+                return;
 
             case "effect":
                 getDicePlaying().makeEffect(dices);
-                break;
+                return;
 
             case "end":
                 getDicePlaying().state = "";
@@ -251,8 +246,7 @@ public class GameManager : MonoBehaviour
                 {
                     playerTurn = 0;
                 }
-                break;
-
+                return;
         }
     }
         
@@ -310,6 +304,7 @@ public class GameManager : MonoBehaviour
 
     // Check si c'est la fin de la partie et affiche le panel de fin
     public void CheckEnd(){
+        endGame = false;
         // Vérifier si un joueur a gagné
         int nbPlayerAlive = 0;
         int nbIAAlive = 0;

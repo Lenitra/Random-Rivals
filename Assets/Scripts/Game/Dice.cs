@@ -6,7 +6,7 @@ public class Dice : MonoBehaviour
 {
     [SerializeField] private GameObject tileSurbrillance;
     public GameObject swordObj;
-    
+    public Animator anim;
     public bool isAI;
 
     public string state = "";
@@ -23,12 +23,14 @@ public class Dice : MonoBehaviour
     //  - att : attaque
     //  - def : défense
     public string[] faces = new string[6];
-    public string[] facesList = new string[6] {"att_1", "att_2", "att_3", "def_1", "def_2", ""};
+    private string[] facesList = new string[6] {"att_1", "att_2", "att_3", "def_1", "def_2", "_"};
 
 
     // Start is called before the first frame update
     void Start()
     {
+        // child 0 is the animation
+        anim = transform.GetChild(0).GetComponent<Animator>();
         // pour chaque face du dé tirer une face aléatoire
         for (int i = 0; i < faces.Length; i++)
         {
@@ -48,6 +50,8 @@ public class Dice : MonoBehaviour
 
     public void eventIsTurn(){
         state = "wait";
+        if (!isAI) anim.SetBool("Selected", true);
+
     }
 
     public string getDetails(){
@@ -108,6 +112,7 @@ public class Dice : MonoBehaviour
 
 
     public IEnumerator moving(int x, int y){
+        anim.SetBool("Selected", false);
         skill = faces[Random.Range(0, faces.Length)];
         state = "moving";
         // make player move from posX;posY to x;y progressively
@@ -162,7 +167,7 @@ public class Dice : MonoBehaviour
     // Fait le skill du dé
     public void makeEffect(List<Dice> dices){
         // activer l'enfant correspondant à l'état, l'enfant à le même nom que l'état
-        // désactiver les autres enfants
+        // désactiver les autres enfants sauf le premier
         foreach (Transform c in transform)
         {
             if (c.name == skill)
@@ -172,6 +177,8 @@ public class Dice : MonoBehaviour
                 c.gameObject.SetActive(false);
             }
         }
+        // réactiver le premier enfant
+        transform.GetChild(0).gameObject.SetActive(true);
 
         if (skill.Contains("att")){
             int x = posX;
