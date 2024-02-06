@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public int nbPlayer = 2; // Nombre dés joueurs
 
     // Liste des joueurs
-    private List<Dice> dices = new List<Dice>();
+    public List<Dice> dices = new List<Dice>();
     private int playerTurn = 0;
     private int[,] map = new int[10,10];
     private bool endGame = false;
@@ -93,16 +93,16 @@ public class GameManager : MonoBehaviour
 
         map = new int[,]
         {
-            {1, 1, 1, 0, 1, 1, 1, 0, 1, 1},
-            {1, 0, 1, 1, 1, 0, 1, 1, 1, 1},
-            {1, 1, 0, 1, 1, 1, 0, 1, 1, 1},
-            {1, 1, 1, 1, 0, 1, 1, 1, 0, 1},
-            {0, 1, 1, 1, 1, 1, 1, 0, 1, 1},
-            {1, 1, 0, 1, 1, 1, 1, 1, 1, 0},
-            {1, 1, 1, 0, 1, 1, 1, 1, 0, 1},
-            {1, 1, 1, 1, 1, 0, 1, 1, 1, 1},
-            {1, 0, 1, 1, 1, 1, 1, 0, 1, 1},
-            {1, 1, 1, 1, 0, 1, 1, 1, 1, 1}
+            {0, 1, 0, 0, 1, 0, 0, 0, 0, 0},
+            {1, 1, 0, 1, 1, 0, 0, 0, 0, 0},
+            {1, 0, 0, 0, 1, 1, 0, 0, 0, 0},
+            {1, 1, 0, 0, 0, 1, 0, 0, 0, 0},
+            {1, 1, 0, 0, 1, 1, 0, 0, 0, 0},
+            {0, 1, 0, 0, 1, 1, 0, 0, 0, 0},
+            {0, 1, 1, 1, 1, 1, 0, 0, 0, 0},
+            {0, 0, 1, 1, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
         };
 
         // Placer les tiles
@@ -191,6 +191,10 @@ public class GameManager : MonoBehaviour
         // Si un des dés : isDead = true, on le supprime de la liste
         dices.RemoveAll(item => item.isDead);
     
+        if (playerTurn >= dices.Count)
+        {
+            playerTurn = 0;
+        }
         
 
         switch (getDicePlaying().state)
@@ -280,7 +284,7 @@ public class GameManager : MonoBehaviour
             string[] tmp = action.Split(';');
             int x = int.Parse(tmp[0]);
             int y = int.Parse(tmp[1]);
-            GameObject tile = Instantiate(tileSurbrillance, new Vector3(x, y , 0), Quaternion.identity);
+            GameObject tile = Instantiate(tileSurbrillance, new Vector3(x, y , -0.5f), Quaternion.identity);
             tile.name = "Tile_" + x + "_" + y;
             tile.transform.parent = highlightTilesContainer.transform;
         }
