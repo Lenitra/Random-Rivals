@@ -101,7 +101,6 @@ public class InvManager : MonoBehaviour
 
 
     // Listener de boutons 
-
     public void selectDice(int index){
         indexSelectedFace = -1;
         indexSelectedDice = index;
@@ -122,16 +121,10 @@ public class InvManager : MonoBehaviour
 
 
 
-    // public void BuyItem(){
-    //     // TODO:
-    //     // - Si une face est selectionné, et qu'un élément de la boutique est cliqué, remplacer la face par l'élément
-    //     // + Check argent
-    // }
-
-    // private void saveJsonTest(){
-    //     // create a new instance of the inventory
-
-    // }
+    // TODO:
+    // - Listener du bouton "Buy New Dice"
+    // - Unity - ShopPanel
+    // - Remplacement de la face via le shop
 
 
 
