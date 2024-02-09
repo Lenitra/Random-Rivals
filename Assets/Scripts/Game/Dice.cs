@@ -41,8 +41,6 @@ public class Dice : MonoBehaviour
         if (isAI)
         {
             GetComponent<Renderer>().material.color = Color.red;
-        } else {
-            GetComponent<Renderer>().material.color = Color.blue;
         }
         // state take a random face
         transform.Find(faces[Random.Range(0, faces.Length)]).gameObject.SetActive(true);

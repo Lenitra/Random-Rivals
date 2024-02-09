@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject detailPanel;
 
     
-    public int nbIA = 3; // Nombre d'IA
+    private int nbIA = 8; // Nombre d'IA
     public int nbPlayer = 2; // Nombre dés joueurs
 
     // Liste des joueurs
@@ -100,9 +100,9 @@ public class GameManager : MonoBehaviour
             {1, 1, 0, 0, 1, 1, 0, 0, 0, 0},
             {0, 1, 0, 0, 1, 1, 0, 0, 0, 0},
             {0, 1, 1, 1, 1, 1, 0, 0, 0, 0},
-            {0, 0, 1, 1, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+            {0, 2, 1, 1, 0, 0, 0, 0, 0, 0},
+            {0, 2, 0, 0, 0, 0, 0, 0, 0, 0},
+            {2, 0, 0, 0, 0, 0, 0, 0, 0, 0}
         };
 
         // Placer les tiles
@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Vérifier si la case est vide
-        if (map[x, y] != 1)
+        if (map[x, y] == 0)
         {
             return false;
         }

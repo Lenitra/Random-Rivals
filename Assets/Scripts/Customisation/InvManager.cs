@@ -96,7 +96,7 @@ public class InvManager : MonoBehaviour
             child.GetComponent<Button>().onClick.AddListener(() => selectFace(faceIndex));
             
             Image slotImage = child.GetComponent<Image>();
-            slotImage.color = new Color(1, 1, 1, 1);
+            slotImage.color = new Color(0.8431373f, 0.9254902f, 0.8980392f, 1);
         }
     }
 
