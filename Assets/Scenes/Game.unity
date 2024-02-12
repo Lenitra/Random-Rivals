@@ -612,7 +612,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1812747917}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: restart
         m_Mode: 1
@@ -1167,7 +1167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1812747915}
-  - component: {fileID: 1812747917}
+  - component: {fileID: 1812747918}
   m_Layer: 0
   m_Name: MANAGER
   m_TagString: Untagged
@@ -1190,7 +1190,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1812747917
+--- !u!114 &1812747918
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1199,19 +1199,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1812747913}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ffab5034c8e015448c5370232a7f5c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d6c6c298e806ea469a5c4638f5585ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dicePrefab: {fileID: 5401645071690165641, guid: e8052cf2218b1eb4e8e30baa46bf26d7, type: 3}
+  dices: []
+  playingQueue: []
   tilePrefabs:
   - {fileID: 3570767860428786844, guid: c06e17f6911c3f54a9134b2b29ccf7e2, type: 3}
   mapContainer: {fileID: 812062247}
-  highlightTilesContainer: {fileID: 1649674075}
-  tileSurbrillance: {fileID: 4441749049013407562, guid: 8e56d3f083a00754a82df73d1639b8d7, type: 3}
-  camera: {fileID: 519420032}
-  endText: {fileID: 1559023364}
+  highlightPrefab: {fileID: 4441749049013407562, guid: 8e56d3f083a00754a82df73d1639b8d7, type: 3}
+  highlightContainer: {fileID: 1649674075}
   endPanel: {fileID: 207270460}
-  detailPanel: {fileID: 1016019728}
-  nbIA: 3
-  nbPlayer: 2
-  dices: []
+  endText: {fileID: 1559023364}
